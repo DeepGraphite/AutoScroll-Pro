@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <circle cx="64" cy="64" r="58" fill="#FFFFFF" stroke="#FF6B35" stroke-width="8"/>
+  <line x1="28" y1="64" x2="100" y2="64" stroke="#FF6B35" stroke-opacity="0.35" stroke-width="2"/>
+  <!-- Up Arrow -->
+  <polygon points="64,22 45,46 56,46 56,56 72,56 72,46 83,46" fill="#FF6B35"/>
+  <!-- Down Arrow -->
+  <polygon points="64,106 83,82 72,82 72,72 56,72 56,82 45,82" fill="#FF6B35"/>
+</svg>

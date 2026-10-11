@@ -1,0 +1,195 @@
+/* AutoScroll Pro — Floating Widget (White + Orange Split) */
+
+#autoscroll-widget {
+  all: initial !important;
+  position: fixed !important;
+  z-index: 2147483647 !important;
+  pointer-events: none !important;
+  user-select: none !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif !important;
+  direction: ltr !important;
+}
+
+#autoscroll-widget * {
+  all: revert !important;
+  box-sizing: border-box !important;
+}
+
+#autoscroll-widget.hidden {
+  opacity: 0 !important;
+  transform: scale(0.65) !important;
+  pointer-events: none !important;
+  transition: opacity 0.22s ease, transform 0.25s cubic-bezier(0.34,1.56,0.64,1) !important;
+}
+
+#autoscroll-widget.visible {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+  pointer-events: all !important;
+  transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.34,1.56,0.64,1) !important;
+}
+
+/* ── Main handle: white circle, orange border ───────────────────────────── */
+#autoscroll-handle {
+  position: relative !important;
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50% !important;
+  overflow: hidden !important;
+  background: #ffffff !important;
+  border: 2.5px solid #FF6B35 !important;
+  box-shadow:
+    0 3px 14px rgba(255,107,53,0.25),
+    0 1px 4px rgba(0,0,0,0.1) !important;
+  cursor: pointer !important;
+  display: flex !important;
+  flex-direction: column !important;
+  transition: box-shadow 0.2s ease, border-color 0.25s ease !important;
+}
+
+#autoscroll-handle:hover {
+  box-shadow:
+    0 5px 20px rgba(255,107,53,0.38),
+    0 2px 6px rgba(0,0,0,0.12) !important;
+}
+
+/* Scrolling states */
+#autoscroll-handle.scrolling-up {
+  border-color: #3B82F6 !important;
+  box-shadow: 0 4px 18px rgba(59,130,246,0.35), 0 1px 4px rgba(0,0,0,0.1) !important;
+}
+
+#autoscroll-handle.scrolling-down {
+  border-color: #FF6B35 !important;
+  box-shadow: 0 4px 18px rgba(255,107,53,0.45), 0 1px 4px rgba(0,0,0,0.1) !important;
+}
+
+/* ── Top half — scroll UP ───────────────────────────────────────────────── */
+#asc-top {
+  flex: 1 !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  padding-bottom: 2px !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease !important;
+  position: relative !important;
+}
+
+#asc-top:hover {
+  background: rgba(59,130,246,0.07) !important;
+}
+
+#asc-top:active {
+  background: rgba(59,130,246,0.15) !important;
+}
+
+/* ── Divider ──────────────────────────────────────────────────────────── */
+#asc-divider {
+  height: 1px !important;
+  background: rgba(255,107,53,0.2) !important;
+  margin: 0 8px !important;
+  flex-shrink: 0 !important;
+}
+
+/* ── Bottom half — scroll DOWN ──────────────────────────────────────────── */
+#asc-bottom {
+  flex: 1 !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  padding-top: 2px !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease !important;
+}
+
+#asc-bottom:hover {
+  background: rgba(255,107,53,0.07) !important;
+}
+
+#asc-bottom:active {
+  background: rgba(255,107,53,0.15) !important;
+}
+
+/* ── Force orange fill on arrow polygons (overrides all:revert) ──── */
+#asc-arrow-up svg polygon,
+#asc-arrow-up svg path,
+#asc-arrow-down svg polygon,
+#asc-arrow-down svg path {
+  fill: #FF6B35 !important;
+}
+
+/* ── Arrow icons ──────────────────────────────────────────────────── */
+#asc-arrow-up,
+#asc-arrow-down {
+  width: 18px !important;
+  height: 18px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: opacity 0.2s ease, transform 0.2s ease !important;
+}
+
+#asc-arrow-up svg,
+#asc-arrow-down svg {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+/* Always visible at rest */
+#asc-arrow-up   { opacity: 1 !important; }
+#asc-arrow-down { opacity: 1 !important; }
+
+/* Hover: slight bounce */
+#asc-top:hover    #asc-arrow-up   { transform: translateY(-2px) !important; }
+#asc-bottom:hover #asc-arrow-down { transform: translateY(2px)  !important; }
+
+/* Active scrolling: active stays, other fades */
+#autoscroll-handle.scrolling-up   #asc-arrow-down { opacity: 0.25 !important; }
+#autoscroll-handle.scrolling-down #asc-arrow-up   { opacity: 0.25 !important; }
+
+/* Scrolling pulse on the active half */
+#autoscroll-handle.scrolling-up #asc-top {
+  animation: half-pulse-up 1.6s ease-in-out infinite !important;
+}
+#autoscroll-handle.scrolling-down #asc-bottom {
+  animation: half-pulse-down 1.6s ease-in-out infinite !important;
+}
+
+@keyframes half-pulse-up {
+  0%,100% { background: rgba(59,130,246,0.05); }
+  50%      { background: rgba(59,130,246,0.14); }
+}
+@keyframes half-pulse-down {
+  0%,100% { background: rgba(255,107,53,0.05); }
+  50%      { background: rgba(255,107,53,0.14); }
+}
+
+/* ── Speed badge — hidden ───────────────────────────────────────────────── */
+#autoscroll-speed-ring { display: none !important; }
+
+/* ── Tooltip ─────────────────────────────────────────────────────────────── */
+#autoscroll-tooltip {
+  position: absolute !important;
+  right: 58px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  background: rgba(15,23,42,0.9) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  color: #e2e8f0 !important;
+  padding: 6px 10px !important;
+  border-radius: 8px !important;
+  font-size: 11px !important;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif !important;
+  white-space: nowrap !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  transition: opacity 0.18s ease !important;
+  line-height: 1.5 !important;
+}
+
+#autoscroll-widget:hover #autoscroll-tooltip {
+  opacity: 1 !important;
+}

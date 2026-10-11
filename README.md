@@ -1,126 +1,49 @@
 # AutoScroll Pro - Chrome Extension
 
-A smooth, feature-rich auto-scrolling Chrome extension with speed control, direction toggle, and a floating in-page widget.
+A smooth, high-performance automated scrolling Chrome extension with granular speed controls, direction toggling, and an intuitive floating in-page widget. Developed by DeepGraphite.
 
-## Features
+## Key Features
 
-- 🖱️ **Floating Widget**: A draggable scroll icon appears on any webpage
-- ⬆️⬇️ **Bi-directional Scrolling**: Scroll up or down with one click
-- 🎚️ **Speed Control**: 10 speed levels (1–10) with preset buttons
-- 🛑 **Auto-stop on Mouse Move**: Moving the mouse left or right stops scrolling
-- 📌 **Always Show Mode**: Widget appears on all pages automatically
-- 🖱️ **Drag to Reposition**: Move the widget anywhere on the page
-- 🔄 **Right-click to Flip Direction**: Instantly reverse scroll direction
-- 🌙 **Dark Mode UI**: Beautiful dark popup with Arabic support
+- 🖱️ **Floating Split Widget**: A minimal, elegant floating widget on any page. Hover or click the top half to scroll up, or bottom half to scroll down.
+- ⬆️⬇️ **Bi-Directional Scrolling**: Smooth scrolling powered by `requestAnimationFrame`.
+- 🎚️ **Customizable Speed**: Choose any speed between 1 and 30 px/frame, or pick instant presets (Slow, Normal, Fast, Turbo).
+- 🛑 **Smart Mouse-Release**: Move your mouse horizontally (left or right) to immediately release scrolling.
+- 📌 **Always-Show Mode**: Option to show the widget automatically across all browsing tabs.
+- 🖱️ **Draggable Placement**: Drag and position the widget anywhere on your viewport.
+- 🔒 **100% Private**: Runs entirely locally on your device with zero data collection.
 
 ## Installation (Developer Mode)
 
 1. Open Chrome and navigate to: `chrome://extensions/`
-2. Enable **Developer Mode** (top right toggle)
-3. Click **"Load unpacked"**
-4. Select this folder: `/Users/muaz/Documents/Chrome Extensions/autoscroll`
-5. The ✅ AutoScroll Pro icon will appear in your Chrome toolbar!
+2. Enable **Developer Mode** (top-right toggle).
+3. Click **"Load unpacked"**.
+4. Select this folder: `/Users/muaz/Documents/Chrome Extensions/autoscroll`.
+5. The AutoScroll Pro icon will appear in your Chrome toolbar.
 
-## How to Use
+## Usage
 
-### Basic Usage
-- Click the **extension icon** in the toolbar → popup opens
-- Click **"إظهار الأداة في الصفحة"** to show the floating widget on the current page
-- Click the floating widget to **start/stop** scrolling
-- The **green glow** = scrolling down, **amber glow** = scrolling up
+### Basic Controls
+- Click the **extension icon** in your toolbar to open the control popup.
+- Click **"Show widget on page"** to display the floating widget.
+- Hover or tap either half of the widget to begin scrolling in that direction.
 
-### Speed Control
-- Use the **slider** in the popup to set speed (1–10)
-- Or click quick presets: 🐢 بطيء / 🏃 متوسط / 🚀 سريع
-- **Scroll wheel** on the floating widget also changes speed
+### Speed Customization
+- Adjust the **Scroll Speed slider** or type your desired speed into the number input (1–30 px/frame).
+- Use quick preset buttons: `Slow·2`, `Normal·5`, `Fast·12`, or `Turbo·25`.
 
-### Stop Scrolling
-- **Click** the widget again
-- **Move mouse horizontally** (left/right) past the threshold
-- Use the **Stop** button in popup
+### Stopping Auto-Scroll
+- **Move your mouse horizontally** (left or right) to release the scroll immediately.
+- Or click **Pause** in the extension popup.
 
-### Direction
-- **Right-click** the floating widget to flip direction instantly
-- Click **"للأسفل / للأعلى"** button in the popup
+## Architecture
 
-## Publishing to Chrome Web Store
+- `manifest.json`: Manifest V3 configuration.
+- `background/background.js`: Lightweight service worker for active tab injection and messaging.
+- `content/content.js`: Core scrolling engine, event listeners, and draggable widget mechanics.
+- `content/content.css`: Modern glassmorphic styles and animations.
+- `popup/`: User settings popup with speed sliders and quick controls.
+- `icons/`: High-resolution RGBA icons (16px, 32px, 48px, 128px).
 
-### Requirements
-- A Google Developer account ($5 one-time fee)
-- Store listing assets (screenshots, description)
+## Privacy Policy
 
-### Steps
-1. **Zip the extension**:
-   ```
-   cd "/Users/muaz/Documents/Chrome Extensions"
-   zip -r autoscroll-pro.zip autoscroll/ --exclude "*.py" --exclude "*.md"
-   ```
-
-2. **Go to**: https://chrome.google.com/webstore/devconsole
-
-3. **Click**: "Add new item" → Upload the zip file
-
-4. **Fill in**:
-   - Name: `AutoScroll Pro`
-   - Category: `Productivity`
-   - Language: Arabic + English
-   - Description (see below)
-   - Screenshots (1280×800 or 640×400)
-   - Privacy policy URL (required)
-
-5. **Set Price**: Free ✅
-
-6. **Submit for Review** (usually 1–3 business days)
-
-### Store Description (English)
-```
-AutoScroll Pro lets you automatically scroll any webpage up or down with a single click. 
-
-Features:
-• Floating draggable scroll widget on every page
-• 10-level speed control
-• Auto-stops when you move your mouse horizontally
-• Right-click to flip scroll direction
-• Always-show mode for quick access
-• Beautiful dark UI with full speed customization
-```
-
-### Store Description (Arabic)
-```
-AutoScroll Pro يتيح لك التمرير التلقائي لأي صفحة ويب لأعلى أو لأسفل بنقرة واحدة.
-
-المميزات:
-• أداة تمرير عائمة وقابلة للسحب في كل صفحة
-• تحكم بالسرعة من 1 إلى 10 مستويات
-• يتوقف تلقائياً عند تحريك الماوس أفقياً
-• انقر بزر الماوس الأيمن لعكس اتجاه التمرير
-• وضع الإظهار الدائم للوصول السريع
-• واجهة مظلمة جميلة مع تخصيص كامل
-```
-
-## File Structure
-
-```
-autoscroll/
-├── manifest.json          # Extension config (Manifest V3)
-├── background/
-│   └── background.js      # Service worker
-├── content/
-│   ├── content.js         # In-page widget logic
-│   └── content.css        # Widget styles
-├── popup/
-│   ├── popup.html         # Extension popup
-│   ├── popup.css          # Popup styles
-│   └── popup.js           # Popup logic
-└── icons/
-    ├── icon16.png
-    ├── icon32.png
-    ├── icon48.png
-    └── icon128.png
-```
-
-## Privacy Policy (Required for Store)
-
-> AutoScroll Pro does not collect, store, or transmit any personal data. All settings (speed, direction, widget position) are stored locally using Chrome's storage API and never leave your device.
-
-Host a simple privacy policy page (GitHub Pages is free) before submitting.
+AutoScroll Pro operates completely offline and respects user privacy. See [PRIVACY_POLICY.md](PRIVACY_POLICY.md) for full details.

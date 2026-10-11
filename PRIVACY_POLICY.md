@@ -18,11 +18,9 @@ AutoScroll Pro ("we", "our", or "the extension") is developed by DeepGraphite. W
 - **Local Settings Storage:** All user preferences (such as scrolling speed, scroll direction, stop sensitivity, and widget visibility) are saved strictly on your local device using the Chrome Storage API (`chrome.storage.local`). This data never leaves your browser.
 
 ## 3. Permissions Justification
-- `activeTab`: Needed to detect the active tab when interacting with the extension popup or widget.
-- `scripting`: Needed to inject the smooth scrolling mechanism and the floating controller widget into the webpage upon request.
+- `activeTab`: Needed to interact with the active webpage upon user action.
+- `scripting`: Needed to inject the smooth scrolling mechanism and the floating controller widget into the active webpage.
 - `storage`: Needed to persist your speed and display preferences locally on your computer.
-- `tabs`: Needed to relay scrolling commands and speed changes between the popup controller and the active tab.
-- Host Permissions (`<all_urls>`): Needed to enable auto-scrolling on any webpage you choose to browse.
 
 ## 4. Single-Purpose Statement
 AutoScroll Pro has a single, well-defined purpose: to provide effortless, hands-free webpage scrolling with speed and mouse-release controls.
